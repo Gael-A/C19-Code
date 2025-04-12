@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <title>Editar Anuncio - Centro de Evaluación CECATI No. 19</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/colors.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+</head>
+
+<body>
+
+    <!-- Contenedor de engranajes -->
+    <div class="gears">
+        <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear1" alt="gear">
+        <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear2" alt="gear">
+    </div>
+
+    <div class="register-container">
+        <a href="/announcement_manager">
+            <img src="{{ url_for('static', filename='svg/back.svg') }}" class="back-button" alt="Volver">
+        </a>
+        <h2>{% if anuncio %}Editar anuncio{% else %}{{mensaje}}{% endif %}</h2>
+
+        <form id="register-form">
+            {% if anuncio %}
+
+            <input type="text" name="uidd" id="uidd" value="{{ anuncio.UIDD }}" class="hidden">
+
+            <label for="titulo" class="required">Título de la imagen</label>
+            <input type="text" id="titulo" name="titulo" required placeholder="Programa de ..."
+                value="{{ anuncio.titulo }}">
+
+            <label for="archivo_imagen" class="required">Archivo de Imagen
+                (JPG/JPEG/PNG/GIF)</label>
+            <input type="text" id="archivo_imagen_nombre"
+                value="{{ anuncio.UIDD + '.' + anuncio.extension if anuncio else 'Sin archivos seleccionados.' }}"
+                placeholder="Sin archivos seleccionados."
+                onfocus="document.getElementById('archivo_imagen').click(); this.blur();">
+            <input type="file" id="archivo_imagen" name="archivo_imagen" accept="image/png, image/jpeg, image/gif"
+                onchange="document.getElementById('archivo_imagen_nombre').value = this.files.length > 0 ? this.files[0].name : '{{ anuncio.UIDD }}.{{ anuncio.extension }}';">
+
+            <label for="link" class="optional">Hipervínculo</label>
+            <input type="text" id="link" name="link" placeholder="https://www.ejemplo.com" {% if anuncio.link
+                %}value="{{ anuncio.link }}" {% endif %}>
+
+            {% else %}
+
+            <label for="titulo" class="required">Título de la imagen</label>
+            <input type="text" id="titulo" name="titulo" required placeholder="Programa de ..." disabled>
+
+            <label for="archivo_imagen" class="required">Archivo de Imagen
+                (JPG/JPEG/PNG/GIF)</label>
+            <input type="text" id="archivo_imagen_nombre" placeholder="Sin archivos seleccionados."
+                onfocus="document.getElementById('archivo_imagen').click(); this.blur();" disabled>
+            <input type="file" id="archivo_imagen" name="archivo_imagen" accept="image/png, image/jpeg, image/gif"
+                required
+                onchange="document.getElementById('archivo_imagen_nombre').value = this.files.length > 0 ? this.files[0].name : '';">
+
+            <label for="link" class="optional">Hipervínculo</label>
+            <input type="text" id="link" name="link" placeholder="https://www.ejemplo.com" disabled>
+
+            {% endif %}
+            <div class="submit-button-container">
+                <button type="button" class="cancelar"
+                    onclick="window.location.href='/announcement_manager'">Cancelar</button>
+                    {% if anuncio %}<button type="submit">Guardar</button>{% endif %}
+            </div>
+            <p class="download-link">Base para Dimensiones De Anuncio (PNG):
+                <a href="{{ url_for('static', filename='img/announcement_guide.png') }}" download
+                    class="secondary-text">Descargar</a>
+            </p>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/announcement_edit_alert.js') }}"></script>
+</body>
+
+</html>

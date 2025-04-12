@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <title>Agregar Anuncio - Centro de Evaluación CECATI No. 19</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/colors.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+</head>
+
+<body>
+
+    <!-- Contenedor de engranajes -->
+    <div class="gears">
+        <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear1" alt="gear">
+        <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear2" alt="gear">
+    </div>
+
+    <div class="register-container">
+        <a href="/">
+            <img src="{{ url_for('static', filename='svg/back.svg') }}" class="back-button" alt="Volver">
+        </a>
+        <h2>Agregar un anuncio</h2>
+
+        <form id="register-form">
+            <label for="titulo" class="required">Título de la imagen</label>
+            <input type="text" id="titulo" name="titulo" required placeholder="Programa de ...">
+
+            <label for="archivo_imagen" class="required">Archivo de Imagen
+                (JPG/JPEG/PNG/GIF)</label>
+            <input type="text" id="archivo_imagen_nombre" placeholder="Sin archivos seleccionados."
+                onfocus="document.getElementById('archivo_imagen').click(); this.blur();">
+            <input type="file" id="archivo_imagen" name="archivo_imagen" accept="image/png, image/jpeg, image/gif"
+                required
+                onchange="document.getElementById('archivo_imagen_nombre').value = this.files.length > 0 ? this.files[0].name : '';">
+
+            <label for="link" class="optional">Hipervínculo</label>
+            <input type="text" id="link" name="link" placeholder="https://www.ejemplo.com">
+
+            <div class="submit-button-container">
+                <button type="button" class="cancelar" onclick="window.location.href='/home'">Cancelar</button>
+                <button type="submit">Guardar</button>
+            </div>
+            <p class="download-link">Base para Dimensiones De Anuncio (PNG):
+                <a href="{{ url_for('static', filename='img/announcement_guide.png') }}" download class="secondary-text">Descargar</a>
+            </p>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/announcement_alert.js') }}"></script>
+</body>
+
+</html>

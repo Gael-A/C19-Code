@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <title>Centro de Evaluación CECATI No. 19</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/colors.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/announcement.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+
+<body>
+    {% include 'navbar.html' with context %}
+
+    <!-- Contenido principal -->
+    <main class="content">
+        {% include 'announcement.html' with context %}
+
+        <div class="main-content">
+
+            <!-- Sección: Bienvenida -->
+            <section id="wellcome">
+                <h1>Bienvenido a Centro de Evaluación CECATI No. 19</h1>
+                <p>
+                    Te damos la bienvenida a Centro de Evaluación CECATI No. 19, donde la excelencia en formación técnica y profesional se une a
+                    la innovación educativa. Aquí encontrarás las herramientas y oportunidades para desarrollar tu
+                    potencial y alcanzar el éxito en el mercado laboral. Explora nuestros cursos y descubre un mundo de
+                    posibilidades para tu crecimiento personal y profesional.
+                </p>
+                <img class="transparent-img" src="{{ url_for('static', filename='img/home/cecati19_logo_cls.png') }}" alt="Imagen de bienvenida">
+            </section>
+
+            <!-- Sección: Qué es Centro de Evaluación CECATI No. 19 -->
+            <section id="about">
+                <h2>Sobre nosotros</h2>
+                <p>
+                    Centro de Evaluación CECATI No. 19 es la opción ideal para formarte como técnico o profesional en diversas áreas. Si buscas 
+                    mejorar tu perfil laboral, aquí encontrarás toda la información necesaria para inscribirte y 
+                    comenzar tu formación. Este Centro de Capacitación para el Trabajo Industrial, reconocido por 
+                    sus siglas CECATI, ofrece un amplio surtido de carreras y cursos diseñados para desarrollar 
+                    habilidades relevantes en el entorno laboral moderno. En Centro de Evaluación CECATI No. 19, podrán inscribirse personas 
+                    mayores de 16 años y todos aquellos que aspiren a aprender y perfeccionar sus competencias para 
+                    alcanzar el éxito profesional.
+                </p>
+                <img src="{{ url_for('static', filename='img/home/teachers.jpg') }}"
+                    alt="Imagen representativa de Centro de Evaluación CECATI No. 19">
+            </section>
+
+            <!-- Sección: Requerimientos / Costos -->
+            <section id="requeriments-price" class="section-doble">
+                <div>
+                    <!-- Columna de Requerimientos -->
+                    <div>
+                        <h2>Requerimientos</h2>
+                        <p>
+                            Para inscribirte en nuestros cursos, deberás cumplir con los siguientes requisitos:
+                        <ul>
+                            <li>Ser mayor de 16 años.</li>
+                            <li>Presentar identificación oficial o pasaporte vigente.</li>
+                            <li>Aportar comprobante de domicilio y fotocopia del CURP.</li>
+                            <li>Entregar 2 fotos tamaño carnet y pagar la cuota del curso.</li>
+                        </ul>
+                        </p>
+                    </div>
+                    <!-- Columna de Costos -->
+                    <div>
+                        <h2>Costos</h2>
+                        <p>
+                            Los cursos se cobran por etapa, de acuerdo a la siguiente estructura:
+                        </p>
+                        <ul>
+                            <li>Alineación: $1500 a $1950 pesos mexicanos.</li>
+                            <li>Proceso de evaluación: $1500 a $2500 pesos mexicanos.</li>
+                            <li>Emisión de certificado: $800 a $1000 pesos mexicanos.</li>
+                        </ul>
+                        <img src="{{ url_for('static', filename='img/home/class.jpg') }}"
+                            alt="Imagen de costos">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección: Misión / Visión -->
+            <section id="mission-vision" class="section-doble">
+                <div>
+                    <!-- Columna de Visión -->
+                    <div>
+                        <h2>Visión</h2>
+                        <p>
+                            Ser una institución educativa certificada y reconocida a nivel nacional e internacional por
+                            la excelencia en la formación de recursos humanos competentes, impulsando el desarrollo
+                            económico y social mediante la certificación laboral.
+                        </p>
+                        <img src="{{ url_for('static', filename='img/home/students.jpg') }}"
+                            alt="Imagen de visión">
+                    </div>
+                    <!-- Columna de Misión -->
+                    <div>
+                        <h2>Misión</h2>
+                        <p>
+                            El Centro de Evaluación forma parte de una institución de la Dirección General de Centros de
+                            Formación para el Trabajo, dedicada a brindar capacitación basada en competencias,
+                            promoviendo la equidad de género, la sustentabilidad y la mejora continua. A través de
+                            estrategias organizativas innovadoras, buscamos facilitar el desarrollo personal y
+                            profesional de nuestros estudiantes y del público en general, impulsando su incorporación y
+                            crecimiento en el mercado laboral, y contribuyendo al éxito de empresas y comunidades.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección: Ventajas -->
+            <section id="advantages">
+                <h2>Ventajas</h2>
+                <p>
+                    Estudiar en Centro de Evaluación CECATI No. 19 te ofrece numerosos beneficios: cursos económicos, certificación oficial
+                    reconocida en todo el país, horarios flexibles y un enfoque práctico que te prepara para enfrentar
+                    los retos del mercado laboral.
+                </p>
+                <img src="{{ url_for('static', filename='img/home/school.jpg') }}" alt="Imagen de ventajas">
+            </section>
+        </div>
+
+    </main>
+
+    <div class="separator-home"></div>
+
+    {% include 'footer.html' with context %}
+
+    <script src="{{ url_for('static', filename='js/navbar_functionality.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/announcement_functionality.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/send_email_functionality.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <title>Modificar Cuenta - Centro de Evaluación CECATI No. 19</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/colors.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+</head>
+
+<body>
+
+    <!-- Contenedor de engranajes -->
+    <div class="gears">
+        <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear1" alt="gear">
+        <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear2" alt="gear">
+    </div>
+
+    <div class="register-container">
+        <a href="/">
+            <img src="{{ url_for('static', filename='svg/back.svg') }}" class="back-button" alt="Volver">
+        </a>
+        <h2>Modificar Cuenta</h2>
+
+        <form id="register-form">
+            <label for="nombre" class="required">Nombre(s)</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Juan Carlos" {% if usuario %}  value="{{ usuario.nombre }}" {% else %} disabled {% endif %}>
+
+            <label for="apellido1" class="required">Primer Apellido</label>
+            <input type="text" id="apellido1" name="apellido1" required placeholder="Pérez" {% if usuario %}  value="{{ usuario.apellidoPat }}" {% else %} disabled {% endif %}>
+
+            <label for="apellido2" class="optional">Segundo Apellido</label>
+            <input type="text" id="apellido2" name="apellido2" placeholder="Gómez" {% if usuario %} {% if usuario.apellidoMat %} value="{{ usuario.apellidoMat }}" {% endif %}{% else %} disabled {% endif %}>
+
+            <label for="correo" class="required">Correo Electrónico</label>
+            <input type="email" id="correo" name="correo" required placeholder="juan.perez@email.com" {% if usuario %}  value="{{ usuario.correo }}" {% else %} disabled {% endif %}>
+
+            <label for="new-password" class="optional">Contraseña Nueva</label>
+            <input type="password" id="new-password" name="new-password" placeholder="Solo si quieres cambiar de contraseña" value="">
+
+            <label for="confirm-password" class="optional">Confirmar Contraseña Nueva</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Repite la contraseña nueva">
+
+            <div class="submit-button-container">
+                <button type="button" class="cancelar"
+                    onclick="window.location.href='/'">Cancelar</button>
+                    {% if usuario %}<button type="submit">Guardar</button>{% endif %}
+            </div>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/user_edit_alert.js') }}"></script>
+</body>
+</html>

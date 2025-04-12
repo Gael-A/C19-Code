@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <title>Iniciar sesión - Centro de Evaluación CECATI No. 19</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/colors.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+</head>
+<body>
+
+    <!-- Contenedor de engranajes -->
+    <div class="gears">
+        <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear1" alt="gear">
+        <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear2" alt="gear">
+    </div>
+
+    <div class="login-container">
+        <a href="/">
+            <img src="{{ url_for('static', filename='svg/back.svg') }}" class="back-button" alt="Volver">
+        </a>    
+        <h2>Iniciar sesión</h2>
+        <form id="login-form">
+            <label for="correo" class="required">Correo Electrónico</label>
+            <input type="email" id="correo" name="correo" required placeholder="juan.perez@email.com">
+
+            <label for="password" class="required">Contraseña</label>
+            <input type="password" id="password" name="password" required placeholder="Mínimo 8 caracteres">
+
+            <button type="submit">Iniciar sesión</button>
+            <p class="register-link">¿Aún no tienes una cuenta? <a href="/user_register" class="secondary-text">Regístrate</a></p>
+        </form>        
+    </div>
+
+    <script src="{{ url_for('static', filename='js/user_login_alert.js') }}"></script>
+</body>
+</html>

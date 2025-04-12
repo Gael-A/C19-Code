@@ -1,0 +1,216 @@
+/* Estilos generales para el contenedor principal */
+main {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--secondary-color);
+    background-color: var(--background-color);
+    padding: 2rem;
+    width: 70%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Estilo para los encabezados */
+h1 {
+    color: var(--main-color);
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--tertiary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Estilo para los párrafos */
+p {
+    margin: 1rem 0;
+    padding: 0.5rem;
+    max-width: 100%;
+}
+
+/* Estilos para la alineación */
+
+p[class^="align-"]:has(img) {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    overflow: hidden;
+}
+
+.align-left {
+    text-align: left;
+    justify-content: flex-start;
+}
+
+.align-center {
+    text-align: center;
+    justify-content: center;
+}
+
+.align-right {
+    text-align: right;
+    justify-content: flex-end;
+}
+
+.align-justify {
+    text-align: justify;
+    justify-content: space-between;
+}
+
+p[class^="align-"] img {
+    flex-shrink: 0;
+    display: block;
+    margin: 0;
+}
+
+/* Estilo de texto para etiquetas <b>, <i>, <u>, <strike> */
+b {
+    color: var(--secondary-color);
+    font-weight: 900;
+}
+
+i {
+    color: var(--tertiary-color);
+    font-style: italic;
+}
+
+u {
+    text-decoration: underline;
+    text-decoration-color: var(--alt-text-color);
+}
+
+strike {
+    color: var(--alt-text-color);
+    text-decoration: line-through;
+}
+
+/* Estilos para tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    table-layout: fixed;
+    overflow-x: auto;
+}
+
+table td, table th {
+    padding: 12px;
+    border: 1px solid var(--tertiary-color);
+}
+
+table th {
+    background-color: var(--main-color);
+    color: var(--text-color);
+    font-weight: bold;
+    text-align: center;
+}
+
+table tr:nth-child(even) {
+    background-color: rgba(179, 28, 47, 0.05);
+}
+
+/* Estilos de imagen */
+main img {
+    min-width: 40%;
+    max-width: 40%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: block;
+}
+
+/* Estilos de listas */
+main ul, main ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+ul {
+    list-style: none;
+}
+
+ol {
+    list-style: none;
+    counter-reset: custom-counter;
+}
+
+ul li, ol li {
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+ul li::before {
+    content: "•";
+    color: var(--main-color);
+    font-size: 1.4em;
+    position: absolute;
+    left: -1.2rem;
+    top: -0.1rem;
+}
+
+ol li::before {
+    content: counter(custom-counter) ".";
+    color: var(--main-color);
+    font-weight: bold;
+    position: absolute;
+    left: -1.5rem;
+    width: 1.5rem;
+    text-align: center;
+}
+
+/* Separador de plantilla */
+.separator-template {
+    margin: 0;
+    padding: 0;
+    background-color: var(--main-color);
+    width: 100%;
+    height: 5px;
+}
+
+/* Estilos de hipervínculo */
+.course-actions {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.course-actions a {
+    color: var(--main-color);
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.course-actions a:hover {
+    text-decoration: underline;
+}
+
+.course-actions .exam-link {
+    display: block;
+    margin-top: 10px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    p[class^="align-"]:has(img) {
+        flex-direction: column;
+        overflow-x: visible;
+    }
+
+    main {
+        width: 100%;
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    main img {
+        width: 100%;
+        max-width: none;
+        max-height: none;
+        display: block;
+        margin: 0 auto;
+    }
+}

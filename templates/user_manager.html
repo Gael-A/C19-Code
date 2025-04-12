@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+  <title>Administrador de Usuarios - Centro de Evaluación CECATI No. 19</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/colors.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/user_manager.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}">
+</head>
+<body>
+  <!-- Contenedor de engranajes -->
+  <div class="gears">
+    <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear1" alt="Gear">
+    <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear2" alt="Gear">
+  </div>
+  
+  <div class="table-container">
+    <a href="/">
+        <img src="{{ url_for('static', filename='svg/back.svg') }}" class="back-button" alt="Volver">
+    </a>
+    <h2>Administrador de Usuarios</h2>
+    <table id="competencias-table">
+      <colgroup>
+        <col>
+        <col>
+        <col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Rol</th>
+          <th>Nombre</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for usuario in usuarios %}
+        <tr id="{{ usuario._id }}">
+          <td><img class="icon_admin" src="{{ url_for('static', filename='svg/admin.svg') }}" {% if usuario.rol != 'admin' %}style="display: none;"{% endif %}></td>
+          <td>{{usuario.nombre}} {{usuario.apellidoPat}} {% if usuario.apellidoMat %}{{ usuario.apellidoMat }}{% endif %}</td>
+          <td>
+            <div class="button-container">
+                {% if usuario.rol == 'admin' %}
+                <button class="edit-btn admin_add" style="display: none;"><img src="{{ url_for('static', filename='svg/admin_add.svg') }}" alt="Hacer Admin"></button>
+                <button class="edit-btn admin_remove"><img src="{{ url_for('static', filename='svg/admin_remove.svg') }}" alt="Quitar Admin"></button>
+                {% else %}
+                <button class="edit-btn admin_remove" style="display: none;"><img src="{{ url_for('static', filename='svg/admin_remove.svg') }}" alt="Quitar Admin"></button>
+                <button class="edit-btn admin_add"><img src="{{ url_for('static', filename='svg/admin_add.svg') }}" alt="Hacer Admin"></button>
+                {% endif %}
+                <button class="delete-btn"><img src="{{ url_for('static', filename='svg/delete.svg') }}" alt="Eliminar"></button>
+            </div>            
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
+  <script src="{{ url_for('static', filename='js/user_manager_functionality.js') }}"></script>
+</body>
+</html>

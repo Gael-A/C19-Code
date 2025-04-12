@@ -1,0 +1,15 @@
+<div class="carousel_backgroud">
+    <div id="announcement" class="carousel">
+        <div class="slides">
+            {% for image in images %}
+            <div class="slide">
+                <img src="{{ url_for('announcements.serve_announcement_image', uidd=image.UIDD) }}"
+                     alt="Imagen {{ image.titulo }}"
+                     onclick="{% if image.link %} window.open('{{ image.link }}', '_blank') {% else %} window.open('{{ url_for('announcements.serve_announcement_image', uidd=image.UIDD) }}', '_blank');{% endif %}">
+            </div>
+            {% endfor %}
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <title>Editar Curso - Centro de Evaluación CECATI No. 19</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/colors.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+</head>
+
+<body>
+
+    <!-- Contenedor de engranajes -->
+    <div class="gears">
+        <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear1" alt="gear">
+        <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear2" alt="gear">
+    </div>
+
+    <div class="register-container">
+        <a href="/course_manager">
+            <img src="{{ url_for('static', filename='svg/back.svg') }}" class="back-button" alt="Volver">
+        </a>
+        <h2>{% if curso %}Editar Curso{% else %}{{mensaje}}{% endif %}</h2>
+
+        <form id="register-form">
+            {% if curso %}
+            <input type="text" name="uidd" id="uidd" value="{{ curso.UIDD }}" class="hidden">
+
+            <label for="nombre" class="required">Nombre del Curso</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Mantenimiento de ..."
+                value="{{ curso.nombre }}" class="form-control">
+
+            <label for="archivo_estandar" class="required">Archivo de Estándar (PDF)</label>
+            <input type="text" id="archivo_estandar_nombre" placeholder="Sin archivos seleccionados."
+                onfocus="document.getElementById('archivo_estandar').click(); this.blur();" value="{{curso.UIDD}}.pdf">
+            <input type="file" id="archivo_estandar" name="archivo_estandar" accept="application/pdf"
+                onchange="document.getElementById('archivo_estandar_nombre').value = this.files.length > 0 ? this.files[0].name : '{{curso.UIDD}}.pdf';">
+
+            <label for="archivo_info" class="required">Archivo de Pagina de Información (DOCX)</label>
+            <input type="text" id="archivo_info_nombre" placeholder="Sin archivos seleccionados."
+                onfocus="document.getElementById('archivo_info').click(); this.blur();" value="{{curso.UIDD}}.docx">
+            <input type="file" id="archivo_info" name="archivo_info"
+                accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                onchange="document.getElementById('archivo_info_nombre').value = this.files.length > 0 ? this.files[0].name : '{{curso.UIDD}}.docx';">
+
+            <label for="examen_link" class="optional">Hipervínculo de Examen de Ubicación</label>
+            <input type="text" id="examen_link" name="examen_link" placeholder="https://forms.office.com/r/..." {% if
+                curso.examen_link %}value="{{ curso.examen_link }}" {% endif %}>
+            {% else %}
+            <label for="nombre" class="required">Nombre del Curso</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Mantenimiento de ..." disabled>
+
+            <label for="archivo_estandar" class="required">Archivo de Estándar (PDF)</label>
+            <input type="text" id="archivo_estandar_nombre" placeholder="Sin archivos seleccionados."
+                onfocus="document.getElementById('archivo_estandar').click(); this.blur();" disabled>
+            <input type="file" id="archivo_estandar" name="archivo_estandar" accept="application/pdf" required
+                onchange="document.getElementById('archivo_estandar_nombre').value = this.files.length > 0 ? this.files[0].name : '';">
+
+            <label for="archivo_info" class="required">Archivo de Pagina de Información (DOCX)</label>
+            <input type="text" id="archivo_info_nombre" placeholder="Sin archivos seleccionados."
+                onfocus="document.getElementById('archivo_info').click(); this.blur();" disabled>
+            <input type="file" id="archivo_info" name="archivo_info"
+                accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document" required
+                onchange="document.getElementById('archivo_info_nombre').value = this.files.length > 0 ? this.files[0].name : '';">
+
+            <label for="examen_link" class="optional">Hipervínculo de Examen de Ubicación</label>
+            <input type="text" id="examen_link" name="examen_link" placeholder="https://forms.office.com/r/..."
+                disabled>
+            {% endif %}
+
+            <div class="submit-button-container">
+                <button type="button" class="cancelar" onclick="window.location.href='/course_manager'">Cancelar</button>
+                {% if curso %}<button type="submit">Guardar</button>{% endif %}
+            </div>
+            <p class="download-link">Base para Pagina de Información (DOCX): <a
+                    href="{{ url_for('static', filename='docx/base.docx') }}" download
+                    class="secondary-text">Descargar</a></p>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/course_edit_alert.js') }}"></script>
+</body>
+
+</html>

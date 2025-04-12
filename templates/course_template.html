@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png"
+            href="{{ url_for('static', filename='img/favicon.png') }}">
+        <title>{% if curso %}{{curso.nombre}}{% else %}Missing No.{% endif %} - Centro de Evaluación CECATI No. 19</title>
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='css/colors.css') }}">
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='css/course_template.css') }}">
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='css/navbar.css') }}">
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='css/footer.css') }}">
+    </head>
+
+    <body>
+        {% include 'navbar.html' with context %}
+
+        <!-- Contenido principal -->
+        <main class="content">
+            {% if curso %}
+            {{ course_html_content | safe }}
+
+            <div class="course-actions">
+                <a href="{{ url_for('courses.serve_pdf', uid=curso.UIDD) }}" download>Descargar</a>
+                <b>o</b>
+                <a href="{{ url_for('courses.serve_pdf', uid=curso.UIDD) }}" target="_blank">Ver Estándar de Competencia</a>
+            
+                {% if curso.examen_link %}
+                <a href="{{ curso.examen_link }}" class="exam-link" target="_blank">Hacer Examen de Ubicación</a>
+                {% endif %}
+            </div>            
+
+            {% else %}
+            <h1>El contenido del curso no está disponible.</h1>
+            <p class="align-center"><span style="font-size:18.0pt;">Lo sentimos,
+                    favor de reportar este problema al administrador.</span></p>
+            {% if mensaje %}
+            <p class="align-center"><span style="font-size:10.0pt;"><b>{{
+                        mensaje }}</b></span></p>
+            {% endif %}
+            {% endif %}
+
+        </main>
+
+        <div class="separator-template"></div>
+
+        {% include 'footer.html' with context %}
+
+        <script
+            src="{{ url_for('static', filename='js/navbar_functionality.js') }}"></script>
+        <script
+            src="{{ url_for('static', filename='js/send_email_functionality.js') }}"></script>
+    </body>
+
+</html>

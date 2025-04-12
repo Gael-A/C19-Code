@@ -1,0 +1,99 @@
+<nav class="navbar">
+    <div class="navbar-left">
+        <img onclick="window.location.href='/'" src="{{ url_for('static', filename='img/cecati19_logo.png') }}" alt="Logo">
+        <div class="separator"></div>
+    </div>
+    <!-- Menú central para PC -->
+    <div class="navbar-center">
+        <ul class="menu">
+            <li><a href="/home">Inicio</a></li>
+            <li><a href="/home#about">Sobre nosotros</a></li>
+            <li><a href="#location">Ubicación</a></li>
+            <li class="dropdown">
+                <button class="dropbtn">Cursos y Capacitaciones</button>
+                <div class="dropdown-content courses">
+                    {% if cursos %}
+                    {% for curso in cursos %}
+                    <a class="a-li" href="/course?uidd={{ curso.UIDD }}">{{ curso.nombre }}</a>
+                    {% endfor %}
+                    {% else %}
+                    <a class="a-li" href="#">Sin elementos disponibles.</a>
+                    {% endif %}
+                </div>
+            </li>
+            {% if usuario and usuario.rol == 'admin' %}
+                <li class="dropdown">
+                    <button class="dropbtn">Herramientas de administrador</button>
+                    <div class="dropdown-content admin-tools">
+                        <a href="/user_manager">Administrador de Usuarios</a>
+                        <a href="/course_register">Agregar de Cursos</a>
+                        <a href="/course_manager">Administrador de Cursos</a>
+                        <a href="/announcement_register">Agregar Anuncio</a>
+                        <a href="/announcement_manager">Administrador de Anuncios</a>
+                    </div>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+    <!-- Menú de usuario (lado derecho) -->
+    <div class="navbar-right">
+        <div class="user-menu">
+            {% if usuario is defined and usuario %}
+            <div class="dropdown">
+                <button class="dropbtn user-info">{{ usuario.nombre }} {{ usuario.apellidoPat }}</button>
+                <div class="dropdown-content">
+                    <span class="info">{{ usuario.correo }}</span>
+                    <a href="/user_edit">Modificar Datos</a>
+                    <a href="/logout">Cerrar sesión</a>
+                    <a href="#" id="delete_user"><b>¡Eliminar Cuenta!</b></a>
+                </div>
+            </div>
+            {% else %}
+            <a href="/user_login" class="login">Iniciar sesión</a>
+            {% endif %}
+
+        </div>
+    </div>
+    <!-- Botón para menú móvil -->
+    <button class="mobile-menu-toggle" id="menu-toggle">
+        <img src="{{ url_for('static', filename='svg/gear.svg') }}" alt="gear" class="gear-icon">
+    </button>
+
+</nav>
+
+<!-- Menú collapse para móvil -->
+<div class="mobile-menu">
+    <ul class="mobile-menu-content">
+        <li><a href="/home">Inicio</a></li>
+        <li><a href="/home#about">Sobre nosotros</a></li>
+        <li><a href="#location">Ubicación</a></li>
+        <li class="dropdown">
+            <button class="dropbtn">Cursos y Capacitaciones</button>
+            <div class="dropdown-content courses">
+            </div>
+        </li>
+        {% if usuario and usuario.rol == 'admin' %}
+            <li class="dropdown">
+                <button class="dropbtn">Herramientas de administrador</button>
+                <div class="dropdown-content admin-tools">
+                </div>
+            </li>
+        {% endif %}
+
+        {% if usuario is defined and usuario %}
+        <li class="dropdown">
+            <button class="dropbtn">{{ usuario.nombre }} {{ usuario.apellidoPat }}</button>
+            <div class="dropdown-content">
+                <span class="info">{{ usuario.correo }}</span>
+                <a href="#">Modificar Datos</a>
+                <a href="/logout">Cerrar sesión</a>
+                <a href="#" id="delete_user"><b>¡Eliminar Cuenta!</b></a>
+            </div>
+        </li>
+        {% else %}
+        <li class="user-menu">
+            <a href="/user_login">Iniciar sesión</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>

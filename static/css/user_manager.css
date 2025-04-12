@@ -1,0 +1,32 @@
+/* Anchos de columnas */
+colgroup col:nth-child(1) {
+    width: 5%;
+}
+
+colgroup col:nth-child(2) {
+    width: 80%;
+}
+
+colgroup col:nth-child(3) {
+    width: 15%;
+}
+
+.icon_admin {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    colgroup col:nth-child(1) {
+        width: 10%;
+    }
+
+    colgroup col:nth-child(2) {
+        width: 65%;
+    }
+
+    colgroup col:nth-child(3) {
+        width: 25%;
+    }
+}

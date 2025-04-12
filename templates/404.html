@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <title>404 - Centro de Evaluación CECATI No. 19</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/colors.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/course_template.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+</head>
+
+<body>
+    {% include 'navbar.html' with context %}
+
+    <!-- Contenido principal -->
+    <main class="content">
+        <h1>Página no encontrada</h1>
+        <p class="align-center">
+            <span style="font-size:18pt;">
+                La dirección a la que intentó acceder no es válida o no existe.
+            </span>
+        </p>
+        
+        {% if error_description %}
+        <p class="align-center">
+            <span style="font-size:14pt; color: red;">
+                {{ error_description }}
+            </span>
+        </p>
+        {% endif %}
+        
+        <p class="align-center">
+            <span style="font-size:12pt;">
+                Verifique que la URL sea correcta o regrese a la página de inicio.
+            </span>
+        </p>
+    
+        <p class="align-center">
+            <span style="font-size:10pt;"><b>
+                Si el problema persiste, contacte al administrador del sitio.
+            </b></span>
+        </p>
+    </main>    
+
+    <div class="separator-template"></div>
+
+    {% include 'footer.html' with context %}
+
+
+    <script src="{{ url_for('static', filename='js/navbar_functionality.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/send_email_functionality.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+  <title>Administrador de Anuncios - Centro de Evaluación CECATI No. 19</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/colors.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/announcement_manager.css') }}">
+</head>
+
+<body>
+
+  <!-- Contenedor de engranajes -->
+  <div class="gears">
+    <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear1" alt="gear">
+    <img src="{{ url_for('static', filename='svg/gear_alt.svg') }}" class="gear gear2" alt="gear">
+  </div>
+
+  <main class="gallery-container">
+    <a href="/">
+      <img src="{{ url_for('static', filename='svg/back.svg') }}" class="back-button" alt="Volver">
+    </a>
+    <h2>Administrador de Anuncios</h2>
+    <div class="image-grid">
+      {% for image in images %}
+      <div class="image-card" id="{{ image.UIDD }}">
+        <img src="{{ url_for('announcements.serve_announcement_image', uidd=image.UIDD) }}"
+          alt="Imagen {{ image.name }}"
+          onclick="{% if image.link %} window.open('{{ image.link }}', '_blank') {% else %} window.open('{{ url_for('announcements.serve_announcement_image', uidd=image.UIDD) }}', '_blank');{% endif %}">
+        <div class="button-container">
+          <button class="edit-btn">
+            <img src="{{ url_for('static', filename='svg/edit.svg') }}" alt="Editar">
+          </button>
+          <button class="delete-btn">
+            <img src="{{ url_for('static', filename='svg/delete.svg') }}" alt="Eliminar">
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/announcement_manager_functionality.js') }}"></script>
+</body>
+
+</html>

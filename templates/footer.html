@@ -1,0 +1,38 @@
+<footer>
+    <div class="footer-container">
+        <!-- Parte izquierda: Ubicación -->
+        <div class="footer-left" id="location">
+            <h4>Ubicación</h4>
+            <p>Dirección:<br>
+                Calle Profesora Simona Barba No. 4401 Ote, Colonia Magisterial,<br>
+                Ciudad Juárez, Chihuahua, México, C.P. 32350.
+            </p>
+            <a href="https://www.google.com/maps/place/CECATI+19+DGCFT/@31.7215253,-106.4527382,739m/data=!3m2!1e3!4b1!4m6!3m5!1s0x86e75eb3f5e98339:0x5c429a8ef6530e03!8m2!3d31.7215254!4d-106.4478673!16s%2Fg%2F1tczfbmx?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Ver en Google Maps</a>
+        </div>
+        <div class="separator-footer"></div>
+
+        {% if usuario is defined and usuario %}
+        <!-- Parte central: Formulario de contacto -->
+        <div class="footer-center">
+            <h4>Contacto</h4>
+            <form>
+                <label for="asunto" class="required">Asunto</label>
+                <input type="text" id="asunto" name="asunto" placeholder="Asunto...">
+                
+                <label for="mensaje" class="required">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje..."></textarea>
+                
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+        <div class="separator-footer"></div>
+        {% endif %}
+
+        <!-- Parte derecha: Información de contacto y WhatsApp -->
+        <div class="footer-right">
+            <h4>Información de Contacto</h4>
+            <p>Mtro. Juan Cristo Rey Garay Lara, correo electrónico: <a href="mailto:cecat19.asa5@dgcft.sems.gob.mx">cecat19.asa5@dgcft.sems.gob.mx</a></p>
+            <a href="https://wa.me/526563659603" target="_blank">Contáctanos por WhatsApp</a>
+        </div>
+    </div>
+</footer>

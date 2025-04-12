@@ -1,0 +1,236 @@
+body {
+    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Contenedor de engranajes */
+.gears {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.gear {
+    position: absolute;
+    width: 30%;
+    height: min-content;
+    opacity: 0.2;
+}
+
+.gear1 {
+    top: 20%;
+    left: 21%;
+    animation: rotateGear1 10s linear infinite;
+    animation-duration: 12s;
+}
+
+.gear2 {
+    top: 20%;
+    left: 49%;
+    animation: rotateGear2 10s linear infinite;
+    animation-duration: 12s;
+}
+
+@keyframes rotateGear1 {
+    from {
+        transform: rotate(22deg);
+    }
+    to {
+        transform: rotate(382deg);
+    }
+}
+
+@keyframes rotateGear2 {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.register-container, .login-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    z-index: 1;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    fill: var(--tertiary-color);
+    transition: transform 0.2s ease-in-out;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}
+
+
+h2 {
+    text-align: center;
+    color: var(--main-color);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+label.required::after {
+    content: " *";
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+label.optional::after {
+    content: " (Opcional)";
+    color: var(--secondary-color);
+    font-style: italic;
+}
+
+input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input:focus {
+    border-color: var(--main-color);
+    box-shadow: 0px 0px 3px var(--main-color);
+}
+
+input::placeholder {
+    color: var(--tertiary-color);
+    opacity: 0.5;
+}
+
+input:focus::placeholder {
+    opacity: 0.25;
+}
+
+input[type="file"], .hidden {
+    display: none;
+}
+
+button {
+    background-color: var(--main-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px;
+    margin-top: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+.submit-button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.submit-button-container button {
+    width: 45%;
+}
+
+.cancelar{
+    background-color: var(--tertiary-color);
+}
+
+.login-link, .register-link, .download-link{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.secondary-text {
+    color: var(--secondary-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.secondary-text:hover {
+    text-decoration: underline;
+}
+
+/* Ajuste del checkbox */
+.check-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.check-container label {
+    flex: 1;
+    margin: 0;
+}
+
+.check-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        margin-top: -60px;
+    }
+
+    .register-container, .login-container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .back-button {
+        top: 20px;
+        left: 10px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .gears {
+        display: none;
+    }
+}
